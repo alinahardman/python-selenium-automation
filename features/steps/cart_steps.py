@@ -6,7 +6,6 @@ from time import sleep
 from selenium.webdriver.support.wait import WebDriverWait
 
 CART_ICON = (By.CSS_SELECTOR, 'div[data-test="@web/CartIcon"]')
-EMPTY_CART_MSG = (By.CSS_SELECTOR, '[data-test="boxEmptyMsg"]')
 ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, '[id*="addToCartButton"]')
 SIDE_NAV_PRODUCT_NAME = (By.CSS_SELECTOR, '[data-test="content-wrapper"] h4')
 ADD_TO_CART_SIDE_NAV = (By.CSS_SELECTOR, '[class="styles_ndsBaseButton__W8Gl7 styles_md__X_r95 styles_mdGap__9J0yq styles_fullWidth__3XX6f styles_ndsButtonPrimary__tqtKH"]')
@@ -68,10 +67,7 @@ def verify_product_name(context):
 
 @then('Your cart is empty message is shown')
 def empty_cart_message(context):
-    actual_message = context.driver.find_element(*EMPTY_CART_MSG).text
-    expected_message = 'Your cart is empty'
-    assert expected_message in actual_message, f'Error. Expected "{expected_message}"'
-
+    context.app.cart_page.empty_cart_message()
 
 
 
