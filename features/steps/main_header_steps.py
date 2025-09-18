@@ -3,8 +3,6 @@ from behave import given, when, then
 from time import sleep
 
 ACCOUNT_ICON = (By.ID, 'account-sign-in')
-SEARCH_FIELD = (By.ID, 'search')
-SEARCH_BUTTON = (By.XPATH, '//button[@data-test="@web/Search/SearchButton"]')
 CART_ICON = (By.CSS_SELECTOR, 'div[data-test="@web/CartIcon"]')
 
 
@@ -15,8 +13,8 @@ def click_account(context):
 
 @when('Search for {product_name}')
 def search_product(context, product_name):
-    context.driver.find_element(*SEARCH_FIELD).send_keys(product_name)
-    context.driver.find_element(*SEARCH_BUTTON).click()
+    print(product_name)
+    context.app.header.search_product(product_name)
 
 
 @when('Click on Cart icon')

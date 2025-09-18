@@ -12,7 +12,6 @@ Feature: Tests for Cart feature
      And Store product name
      And Confirm Add to Cart button from side navigation
      And Click View Cart & Check Out
-#     And Close side bar navigation
      Then Verify cart has correct product
 
 
