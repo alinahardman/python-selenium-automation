@@ -1,19 +1,38 @@
-from selenium.webdriver.common.by import By
-from behave import given, when, then
-from time import sleep
+from behave import when
 
-SIGN_IN_BUTTON = (By.CSS_SELECTOR, '[data-test="accountNav-signIn"]')
 
 @when('Click Sign In')
 def click_sign_in(context):
-    context.driver.find_element(*SIGN_IN_BUTTON).click()
+    context.app.sign_in_side_bar.click_sign_in()
 
 
-@then('Sign In form opened')
-def sign_in_form(context):
-    username_field = context.driver.find_element(By.ID, 'username')
-    # Verify that the field is visible on the page
-    assert username_field.is_displayed(), "Error: Username field is not visible!"
-    print("Username field is present and visible.")
+@when('Input email')
+def input_email(context):
+    test_email = "future3pete@getmail1.com"  # Your test email
+    context.app.sign_in_page.input_email(test_email)
 
 
+@when('Click Continue')
+def click_continue(context):
+    context.app.sign_in_page.click_continue()
+
+
+@when('Click use password')
+def click_use_password(context):
+    context.app.sign_in_page.click_use_password()
+
+
+@when('Input password')
+def input_password(context):
+    test_password = "******"
+    context.app.sign_in_page.input_password(test_password)
+
+
+@when('Click Sign In With Password')
+def click_sign_in_with_password(context):
+    context.app.sign_in_page.click_sign_in_with_password()
+
+
+@when('Click Skip Phone Number')
+def skip_link(context):
+    context.app.sign_in_page.skip_link()

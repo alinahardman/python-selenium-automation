@@ -1,24 +1,24 @@
-from selenium.webdriver.common.by import By
-from behave import given, when, then
-from time import sleep
-
-ACCOUNT_ICON = (By.ID, 'account-sign-in')
-CART_ICON = (By.CSS_SELECTOR, 'div[data-test="@web/CartIcon"]')
+from behave import when, then
 
 
 @when('Click Account')
 def click_account(context):
-    context.driver.find_element(*ACCOUNT_ICON).click()
+    context.app.header_page.click_account()
 
 
 @when('Search for {product_name}')
 def search_product(context, product_name):
     print(product_name)
-    context.app.header.search_product(product_name)
+    context.app.header_page.search_product(product_name)
 
 
 @when('Click on Cart icon')
 def click_cart(context):
-    context.app.header.click_cart()
-    # context.driver.find_element(*CART_ICON).click()
+    context.app.header_page.click_cart()
+
+
+@then('Verify user is logged in')
+def verify_user_logged_in(context):
+    username = 'Future'
+    context.app.header_page.verify_user_logged_in(username)
 
