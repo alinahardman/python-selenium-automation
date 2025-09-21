@@ -8,12 +8,22 @@ class SignInPage(BasePage):
     USERNAME_FIELD = (By.NAME, 'username')
     PASSWORD_FIELD = (By.NAME, 'password')
     CONTINUE_BUTTON = (By.CSS_SELECTOR, 'button#login')
-    # CONTINUE_BUTTON = (By.XPATH, '(//*[contains(@class, "styles_cellContent__tjccx")])[3]')
     ENTER_PASSWORD_BUTTON = (By.CSS_SELECTOR, 'div#password')
     SIGN_IN_WITH_PASSWORD_BUTTON = (By.XPATH, '//button[text()="Sign in with password"]')
     SKIP_LINK = (By.XPATH, '//a[text()="Skip" and @href="/"]')
+    TERMS_CONDITIONS_LINK = (By.XPATH, '//a[contains(@aria-label, "terms & conditions")]')
 
-    def sign_in_form(self):
+
+    def store_window(self):
+        original_window = self.get_original_window()
+        print('Original window: ', original_window)
+
+
+    def click_target_terms_and_conditions(self):
+        self.driver.find_element(*self.TERMS_CONDITIONS_LINK).click()
+
+
+    def verify_sign_in_form_opened(self):
         username_field = self.driver.find_element(*self.USERNAME_FIELD)
         assert username_field.is_displayed(), "Error: Username field is not visible!"
         print("Username field is present and visible.")
@@ -42,3 +52,5 @@ class SignInPage(BasePage):
 
     def skip_link(self):
         self.driver.find_element(*self.SKIP_LINK).click()
+
+

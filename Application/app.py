@@ -7,7 +7,7 @@ from pages.sign_in_page import SignInPage
 from pages.sign_in_side_bar import SignInSideBar
 from pages.circle_page import CirclePage
 from pages.product_details_page import ProductDetailsPage
-
+from pages.terms_and_conditions_page import TermsAndConditions
 
 class Application:
 
@@ -23,3 +23,4 @@ class Application:
         self.sign_in_side_bar = SignInSideBar(driver)
         self.circle_page = CirclePage(driver)
         self.product_details_page = ProductDetailsPage(driver)
+        self.terms_and_conditions_page = TermsAndConditions(driver)

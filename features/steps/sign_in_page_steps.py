@@ -1,4 +1,15 @@
-from behave import when
+from behave import given, when
+
+
+@when('Store original window')
+def store_window(context):
+    context.original_window = context.app.sign_in_page.get_original_window()
+    print('Original window: ', context.original_window)
+
+
+@when('Click on Target terms and conditions link')
+def click_target_terms_and_conditions(context):
+    context.app.sign_in_page.click_target_terms_and_conditions()
 
 
 @when('Click Sign In')
@@ -36,3 +47,11 @@ def click_sign_in_with_password(context):
 @when('Click Skip Phone Number')
 def skip_link(context):
     context.app.sign_in_page.skip_link()
+
+
+@when('Switch to the newly opened window')
+def switch_window(context):
+    context.app.page.switch_to_newly_opened_window([context.original_window])
+
+
+
